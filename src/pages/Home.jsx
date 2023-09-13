@@ -29,7 +29,7 @@ const Home = () => {
         <>
             <div className="container mb-5">
                 <nav className="nav p-3 hover">
-                    <a className="nav-link" aria-current="page" href="#">Home</a>
+                    <a className="nav-link" aria-current="page" >Home</a>
                     <Link className="nav-link" to={'/create'}>Crear Post</Link>
                 </nav>
                 <h1 className='text-center mt-5 fw-bold '>Cara-Libro</h1>
@@ -45,7 +45,7 @@ const Home = () => {
                                             <h4>{post.tags}</h4>
                                             <p className="card-text mt-3">{post.content}</p>
                                             <div className='d-flex justify-content-end '>
-                                                <a href="#" onClick={ (ev)=>handleClick(ev, post.key)} className="btn btn-primary">Ver mas</a>
+                                                <button onClick={ (ev)=>handleClick(ev, post.key)} className="btn btn-primary">Ver mas</button>
                                             </div>
                                         </div>
                                     </div>
