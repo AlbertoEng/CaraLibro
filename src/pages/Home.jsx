@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom'
 const Home = () => {
 
     const [listPosts, setListPosts] = useState([])
+    const [searchText, setSearchText] = useState('')
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -20,8 +21,13 @@ const Home = () => {
         getPosts()
     }, [])
 
-    const handleClick = (ev, key)=>{
+    const handleClick = (ev, key) => {
         navigate(`/detail/${key}`);
+    }
+
+    const handleChangeText  = ( ev )=>{
+        setSearchText(ev.target.value);
+        console.log(ev.target.value)
     }
 
 
@@ -32,10 +38,14 @@ const Home = () => {
                     <a className="nav-link" aria-current="page" >Home</a>
                     <Link className="nav-link" to={'/create'}>Crear Post</Link>
                 </nav>
-                <h1 className='text-center mt-5 fw-bold '>Cara-Libro</h1>
+                <h1 className='text-center mt-3 fw-bold '>Cara-Libro</h1>
                 <div className="row d-flex justify-content-center">
                     <div className="col-12  " style={{ maxWidth: '700px' }}>
+                        <div className='d-flex '>
+                            <input onChange={handleChangeText} value={searchText} className='form-control' type="text" placeholder='Buscar' />
+                        </div>
                         {
+                            !searchText &&
                             listPosts.map((post) => {
                                 return (
                                     <div key={post.key} className="card mt-3 shadow">
@@ -45,10 +55,28 @@ const Home = () => {
                                             <h4>{post.tags}</h4>
                                             <p className="card-text mt-3">{post.content}</p>
                                             <div className='d-flex justify-content-end '>
-                                                <button onClick={ (ev)=>handleClick(ev, post.key)} className="btn btn-primary">Ver mas</button>
+                                                <button onClick={(ev) => handleClick(ev, post.key)} className="btn btn-primary">Ver mas</button>
                                             </div>
                                         </div>
                                     </div>
+                                )
+                            })
+                        }
+                        {
+                            searchText &&
+                            listPosts.map((post) => {
+                                return (
+                                    post.title.toLowerCase().includes(searchText.toLowerCase()) || post.content.toLowerCase().includes(searchText.toLowerCase())? <div key={post.key} className="card mt-3 shadow">
+                                        <img src={post.cover} className="card-img-top" alt="..." />
+                                        <div className="card-body ">
+                                            <h2 className="card-title">{post.title}</h2>
+                                            <h4>{post.tags}</h4>
+                                            <p className="card-text mt-3">{post.content}</p>
+                                            <div className='d-flex justify-content-end '>
+                                                <button onClick={(ev) => handleClick(ev, post.key)} className="btn btn-primary">Ver mas</button>
+                                            </div>
+                                        </div>
+                                    </div> : null
                                 )
                             })
                         }
