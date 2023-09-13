@@ -35,10 +35,9 @@ const Home = () => {
         <>
             <div className="container mb-5">
                 <nav className="nav p-3 hover">
-                    <a className="nav-link" aria-current="page" >Home</a>
                     <Link className="nav-link" to={'/create'}>Crear Post</Link>
                 </nav>
-                <h1 className='text-center mt-3 fw-bold '>Cara-Libro</h1>
+                <h1 className='text-center fw-bold '>Cara-Libro</h1>
                 <div className="row d-flex justify-content-center">
                     <div className="col-12  " style={{ maxWidth: '700px' }}>
                         <div className='d-flex '>
@@ -53,7 +52,7 @@ const Home = () => {
                                         <div className="card-body ">
                                             <h2 className="card-title">{post.title}</h2>
                                             <h4>{post.tags}</h4>
-                                            <p className="card-text mt-3">{post.content}</p>
+                                            <p className="card-text mt-3">{post.content.slice(0,50)}</p>
                                             <div className='d-flex justify-content-end '>
                                                 <button onClick={(ev) => handleClick(ev, post.key)} className="btn btn-primary">Ver mas</button>
                                             </div>

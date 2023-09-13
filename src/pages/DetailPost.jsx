@@ -73,7 +73,7 @@ const DetailPost = () => {
                             <h1 className=''>{post.title}</h1>
                             <h6 className=''>{post.content}</h6>
                             <div className="row w-100">
-                                <div className="col-12 p-5">
+                                <div className="col-12">
                                     <h3>Agrega un Comentario</h3>
                                     <textarea onChange={handleChangeMessage} type="texa" name='comment'  className='form-control' />
                                     <button onClick={handleAddComment} className='btn btn-primary mt-3'>Agregar Comentario</button>
