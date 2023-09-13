@@ -27,8 +27,8 @@ const Home = () => {
 
     return (
         <>
-            <div className="container">
-                <nav className="nav p-3">
+            <div className="container mb-5">
+                <nav className="nav p-3 hover">
                     <a className="nav-link" aria-current="page" href="#">Home</a>
                     <Link className="nav-link" to={'/create'}>Crear Post</Link>
                 </nav>

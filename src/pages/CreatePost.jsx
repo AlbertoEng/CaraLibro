@@ -17,7 +17,10 @@ const CreatePost = () => {
 
     return (
         <>
-            <div className="container">
+            <div className="container mb-5">
+                <nav className="nav p-3 hover">
+                    <Link to='/' className="nav-link" aria-current="page">Home</Link>
+                </nav>
                 <h1 className='text-center mt-5'>Crear Post</h1>
                 <div className="row mt-5 d-flex justify-content-center">
                     <div className="col-12" style={{ maxWidth: '600px' }}>
@@ -29,7 +32,7 @@ const CreatePost = () => {
                             <input id='autor' placeholder='Autor' className='form-control mt-3' defaultValue="" {...register("autor")} />
                             <input id='tags' placeholder='#reactNative #flutter' className='form-control mt-3' defaultValue="" {...register("tags")} />
                             {/* {errors.exampleRequired && <span>This field is required</span>} */}
-                            <button  type="submit"  className='btn btn-primary mt-3' >Enviar</button>
+                            <button type="submit" className='btn btn-primary mt-3' >Enviar</button>
                         </form>
                     </div>
                 </div>
