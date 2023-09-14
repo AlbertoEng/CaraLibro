@@ -47,10 +47,10 @@ const Home = () => {
                             !searchText &&
                             listPosts.map((post) => {
                                 return (
-                                    <div key={post.key} className="card mt-3 shadow rouded overflow-hidden">
+                                    <div key={post.key} className="card mt-3 shadow rouded">
                                         {
                                             post.cover
-                                                ? <img src={post.cover} className="card-img-top" alt="..." style={{ width: '800px', height: '' }} />
+                                                ? <img src={post.cover} className="card-img-fluid w-100" alt="..." style={{ width: '800px' }} />
                                                 : <div className="spinner-border text-primary" role="status">
                                                     <span className="visually-hidden">Loading...</span>
                                                 </div>
@@ -71,8 +71,8 @@ const Home = () => {
                             searchText &&
                             listPosts.map((post) => {
                                 return (
-                                    post.title.toLowerCase().includes(searchText.toLowerCase()) || post.tags.toLowerCase().includes(searchText.toLowerCase()) ? <div key={post.key} className="card mt-3 shadow rounded overflow-hidden">
-                                        <img src={post.cover} className="img-fluid h-50" alt="..." />
+                                    post.title.toLowerCase().includes(searchText.toLowerCase()) || post.tags.toLowerCase().includes(searchText.toLowerCase()) ? <div key={post.key} className="card mt-3 shadow rounded">
+                                        <img src={post.cover} className="card-img-fluid w-100" alt="..." />
                                         <div className="card-body ">
                                             <h2 className="card-title">{post.title}</h2>
                                             <h4>{post.tags}</h4>
