@@ -50,7 +50,7 @@ const Home = () => {
                                     <div key={post.key} className="card mt-3 shadow rouded overflow-hidden">
                                         {
                                             post.cover
-                                                ? <img src={post.cover} className="img-fluid" alt="..." style={{ width: '800px', height: '' }} />
+                                                ? <img src={post.cover} className="card-img-top" alt="..." style={{ width: '800px', height: '' }} />
                                                 : <div className="spinner-border text-primary" role="status">
                                                     <span className="visually-hidden">Loading...</span>
                                                 </div>
