@@ -15,6 +15,16 @@ const DetailPost = () => {
         id
     })
 
+ 
+    const getMessages = async () => {
+        const response = await fetch(`https://mi-proyecto-7bd3d-default-rtdb.firebaseio.com/replies/.json`);
+        const data = await response.json()
+        const objectToList = Object.entries(data).map(([clave, valor]) => {
+            valor.key = clave
+            return valor
+        })
+        setListMessages(objectToList)
+    }
 
 
     useEffect(() => {
@@ -22,26 +32,16 @@ const DetailPost = () => {
             const response = await fetch(`https://mi-proyecto-7bd3d-default-rtdb.firebaseio.com/postv2/${id}/.json`);
             const data = await response.json();
             setPost(data);
-        }
-        const getMessages = async () => {
-            const response = await fetch(`https://mi-proyecto-7bd3d-default-rtdb.firebaseio.com/replies/.json`);
-            const data = await response.json()
-            const objectToList = Object.entries(data).map(([clave, valor]) => {
-                valor.key = clave
-                return valor
-            })
-            console.log(objectToList)
-            setListMessages(objectToList)
+            await getMessages();
         }
         getPostById()
-        getMessages()
     }, [])
 
     const handleChangeMessage = (ev) => {
         setMessage({ ...message, [ev.target.name]: ev.target.value, createdAt: `${new Date()}` })
     }
 
-    const handleAddComment = (ev) => {
+    const handleAddComment = async(ev) => {
         ev.preventDefault()
         const createMessage = async () => {
             const response = await fetch(`https://mi-proyecto-7bd3d-default-rtdb.firebaseio.com/replies/.json`, {
@@ -56,8 +56,9 @@ const DetailPost = () => {
                 id
             });
         }
+        
         createMessage()
-        navigate(`/detail/${id}`)
+        await getMessages()
     }
 
     return (
@@ -85,7 +86,7 @@ const DetailPost = () => {
                                     <h6 className='fw-bold '>{post.tags}</h6>
                                     <h6 className=''>{post.content}</h6>
                                     <h3 className='mt-5'>Agrega un Comentario</h3>
-                                    <textarea onChange={handleChangeMessage} type="texa" name='comment' className='form-control' />
+                                    <textarea onChange={handleChangeMessage} value={message.comment} type="texa" name='comment' className='form-control' />
                                     <button onClick={handleAddComment} className='btn btn-primary mt-3'>Agregar Comentario</button>
                                     <div className="row">
                                         <div className="col-12">
