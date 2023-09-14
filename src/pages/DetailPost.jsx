@@ -16,15 +16,7 @@ const DetailPost = () => {
     })
 
  
-    const getMessages = async () => {
-        const response = await fetch(`https://mi-proyecto-7bd3d-default-rtdb.firebaseio.com/replies/.json`);
-        const data = await response.json()
-        const objectToList = Object.entries(data).map(([clave, valor]) => {
-            valor.key = clave
-            return valor
-        })
-        setListMessages(objectToList)
-    }
+    
 
 
     useEffect(() => {
@@ -32,10 +24,23 @@ const DetailPost = () => {
             const response = await fetch(`https://mi-proyecto-7bd3d-default-rtdb.firebaseio.com/postv2/${id}/.json`);
             const data = await response.json();
             setPost(data);
-            await getMessages();
         }
         getPostById()
     }, [])
+
+    useEffect(()=>{
+        const getMessages = async () => {
+            const response = await fetch(`https://mi-proyecto-7bd3d-default-rtdb.firebaseio.com/replies/.json`);
+            const data = await response.json()
+            const objectToList = Object.entries(data).map(([clave, valor]) => {
+                valor.key = clave
+                return valor
+            })
+            console.log('pase aqui')
+            setListMessages(objectToList)
+        }
+        getMessages();
+    }, [message])
 
     const handleChangeMessage = (ev) => {
         setMessage({ ...message, [ev.target.name]: ev.target.value, createdAt: `${new Date()}` })
@@ -56,9 +61,7 @@ const DetailPost = () => {
                 id
             });
         }
-        
         createMessage()
-        await getMessages()
     }
 
     return (

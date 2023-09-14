@@ -33,7 +33,7 @@ const Home = () => {
 
     return (
         <>
-            <div className="container mb-3">
+            <div className="container-fluid mb-3">
                 <nav className="nav p-3 hover">
                     <Link className="nav-link" to={'/create'}>Crear Post</Link>
                 </nav>
