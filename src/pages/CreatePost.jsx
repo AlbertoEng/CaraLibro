@@ -24,7 +24,7 @@ const CreatePost = () => {
                 <h1 className='text-center mt-5'>Crear Post</h1>
                 <div className="row mt-5 d-flex justify-content-center">
                     <div className="col-12" style={{ maxWidth: '600px' }}>
-                        <form className='form-group bg-dark p-5 rounded' onSubmit={handleSubmit(savePost)}>
+                        <form className='form-group bg-dark p-5 rounded shadow' onSubmit={handleSubmit(savePost)}>
                             {/* register your input into the hook by invoking the "register" function */}
                             <input id='title' placeholder='Titulo del Post' className='form-control mt-3' defaultValue="" {...register("title")} />
                             <input id='content' placeholder='Contenido del Post' className='form-control mt-3' defaultValue="" {...register("content")} />
