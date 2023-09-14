@@ -25,7 +25,7 @@ const Home = () => {
         navigate(`/detail/${key}`);
     }
 
-    const handleChangeText  = ( ev )=>{
+    const handleChangeText = (ev) => {
         setSearchText(ev.target.value);
         console.log(ev.target.value)
     }
@@ -48,11 +48,17 @@ const Home = () => {
                             listPosts.map((post) => {
                                 return (
                                     <div key={post.key} className="card mt-3 shadow">
-                                        <img src={post.cover} className="card-img-top" alt="..." />
+                                        {
+                                            post.cover
+                                                ? <img src={post.cover} className="img-fluid rounded shadow" alt="..." style={{ width: '800px' }} />
+                                                : <div className="spinner-border text-primary" role="status">
+                                                    <span className="visually-hidden">Loading...</span>
+                                                </div>
+                                        }
                                         <div className="card-body ">
                                             <h2 className="card-title">{post.title}</h2>
                                             <h4>{post.tags}</h4>
-                                            <p className="card-text mt-3">{post.content.length > 50 ? post.content.slice(0,50) + '...' : post.content}</p>
+                                            <p className="card-text mt-3">{post.content.length > 50 ? post.content.slice(0, 50) + '...' : post.content}</p>
                                             <div className='d-flex justify-content-end '>
                                                 <button onClick={(ev) => handleClick(ev, post.key)} className="btn btn-primary">Ver mas</button>
                                             </div>
@@ -65,7 +71,7 @@ const Home = () => {
                             searchText &&
                             listPosts.map((post) => {
                                 return (
-                                    post.title.toLowerCase().includes(searchText.toLowerCase()) || post.content.toLowerCase().includes(searchText.toLowerCase())? <div key={post.key} className="card mt-3 shadow">
+                                    post.title.toLowerCase().includes(searchText.toLowerCase()) || post.content.toLowerCase().includes(searchText.toLowerCase()) ? <div key={post.key} className="card mt-3 shadow">
                                         <img src={post.cover} className="card-img-top" alt="..." />
                                         <div className="card-body ">
                                             <h2 className="card-title">{post.title}</h2>
