@@ -10,12 +10,13 @@ const DetailPost = () => {
     const [listMessages, setListMessages] = useState([])
     const navigate = useNavigate();
     const [message, setMessage] = useState({
+        author: '',
         comment: '',
         createdAt: '',
         id
     })
 
- 
+    
     
 
 
@@ -56,6 +57,7 @@ const DetailPost = () => {
             });
             const data = await response.json();
             setMessage({
+                author: '',
                 comment: '',
                 createdAt: '',
                 id
@@ -83,16 +85,20 @@ const DetailPost = () => {
 
                             <div className="row w-100" style={{ maxWidth: '800px'}}>
                                 <div className="col-12">
-
                                     <h1 className='mt-3'>{post.title}</h1>
                                     <h6 className='fw-bold'>{post.autor}</h6>
                                     <h6 className='fw-bold '>{post.tags}</h6>
-                                    <h6 className=''>{post.content}</h6>
-                                    <h3 className='mt-5'>Agrega un Comentario</h3>
-                                    <textarea onChange={handleChangeMessage} value={message.comment} type="texa" name='comment' className='form-control' />
-                                    <button onClick={handleAddComment} className='btn btn-primary mt-3'>Agregar Comentario</button>
+                                    <h6 className='text-justify'>{post.content}</h6>
                                     <div className="row">
                                         <div className="col-12">
+                                            <h3 className='mt-5'>Agrega un Comentario</h3>
+                                            <input type="text" onChange={handleChangeMessage} name='author' value={message.author} className='form-control mb-3 w-100' placeholder='Tu nombre de Usuario' />
+                                            <textarea onChange={handleChangeMessage} value={message.comment} type="texa" name='comment' className='form-control' placeholder='Escribe aqui tu comentario'/>
+                                            <button onClick={handleAddComment} className='btn btn-primary mt-3'>Agregar Comentario</button>
+                                        </div>
+                                    </div>
+                                    <div className="row">
+                                        <div className="col-12 mt-5">
                                             <h2>comments</h2>
                                             <ul className='list-group'>
                                                 {
@@ -100,7 +106,7 @@ const DetailPost = () => {
 
                                                         return mess.id === id ? <div key={mess.key} className="card mt-3">
                                                             <div className="card-header">
-                                                                Jesus Eng
+                                                                {mess.author}
                                                             </div>
                                                             <div className="card-body">
                                                                 <blockquote className="blockquote mb-0">

@@ -37,20 +37,20 @@ const Home = () => {
                 <nav className="nav p-3 hover">
                     <Link className="nav-link" to={'/create'}>Crear Post</Link>
                 </nav>
-                <h1 className='text-center fw-bold '>Cara-Libro</h1>
+                <h1 className='text-center fw-bold text-primary' style={{textShadow: '2px 2px 5px black'}}>Cara-Libro</h1>
                 <div className="row d-flex justify-content-center">
                     <div className="col-12  " style={{ maxWidth: '700px' }}>
                         <div className='d-flex '>
-                            <input onChange={handleChangeText} value={searchText} className='form-control' type="text" placeholder='Buscar' />
+                            <input onChange={handleChangeText} value={searchText} className='form-control shadow' type="text" placeholder='Buscar' />
                         </div>
                         {
                             !searchText &&
                             listPosts.map((post) => {
                                 return (
-                                    <div key={post.key} className="card mt-3 shadow">
+                                    <div key={post.key} className="card mt-3 shadow rouded overflow-hidden">
                                         {
                                             post.cover
-                                                ? <img src={post.cover} className="img-fluid rounded shadow" alt="..." style={{ width: '800px' }} />
+                                                ? <img src={post.cover} className="img-fluid" alt="..." style={{ width: '800px', height: '' }} />
                                                 : <div className="spinner-border text-primary" role="status">
                                                     <span className="visually-hidden">Loading...</span>
                                                 </div>
@@ -71,8 +71,8 @@ const Home = () => {
                             searchText &&
                             listPosts.map((post) => {
                                 return (
-                                    post.title.toLowerCase().includes(searchText.toLowerCase()) || post.tags.toLowerCase().includes(searchText.toLowerCase()) ? <div key={post.key} className="card mt-3 shadow">
-                                        <img src={post.cover} className="card-img-top" alt="..." />
+                                    post.title.toLowerCase().includes(searchText.toLowerCase()) || post.tags.toLowerCase().includes(searchText.toLowerCase()) ? <div key={post.key} className="card mt-3 shadow rounded overflow-hidden">
+                                        <img src={post.cover} className="img-fluid h-50" alt="..." />
                                         <div className="card-body ">
                                             <h2 className="card-title">{post.title}</h2>
                                             <h4>{post.tags}</h4>
