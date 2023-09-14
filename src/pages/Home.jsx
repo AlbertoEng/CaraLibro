@@ -33,7 +33,7 @@ const Home = () => {
 
     return (
         <>
-            <div className="container mb-5">
+            <div className="container mb-3">
                 <nav className="nav p-3 hover">
                     <Link className="nav-link" to={'/create'}>Crear Post</Link>
                 </nav>
@@ -52,7 +52,7 @@ const Home = () => {
                                         <div className="card-body ">
                                             <h2 className="card-title">{post.title}</h2>
                                             <h4>{post.tags}</h4>
-                                            <p className="card-text mt-3">{post.content.slice(0,50)}</p>
+                                            <p className="card-text mt-3">{post.content.length > 50 ? post.content.slice(0,50) + '...' : post.content}</p>
                                             <div className='d-flex justify-content-end '>
                                                 <button onClick={(ev) => handleClick(ev, post.key)} className="btn btn-primary">Ver mas</button>
                                             </div>

@@ -59,26 +59,25 @@ const DetailPost = () => {
     }
 
     return (
-        <div className="container mb-5">
+        <div className="container mb-3">
             <nav className="nav p-3 hover">
                 <Link to='/' className="nav-link" aria-current="page">Home</Link>
             </nav>
-            <div className="row mt-5 ">
+            <div className="row mt-3 ">
                 <div className="col-12 ">
                     <div className=''>
                         <div className='d-flex flex-column justify-content-center h-50 align-items-center' >
                             <img src={post?.cover} className="img-fluid rounded shadow" alt="..." style={{ width: '800px' }} />
-                            <h6 className='mt-5'>{post.autor}</h6>
+                            <h1 className='mt-3'>{post.title}</h1>
+                            <h6 className=''>{post.autor}</h6>
                             <h6 className=''>{post.tags}</h6>
-                            <h1 className=''>{post.title}</h1>
                             <h6 className=''>{post.content}</h6>
-                            <div className="row w-100">
+                            <div className="row">
                                 <div className="col-12">
-                                    <h3>Agrega un Comentario</h3>
+                                    <h3 className='mt-5'>Agrega un Comentario</h3>
                                     <textarea onChange={handleChangeMessage} type="texa" name='comment'  className='form-control' />
                                     <button onClick={handleAddComment} className='btn btn-primary mt-3'>Agregar Comentario</button>
-                                </div>
-                                <div className="row">
+                                    <div className="row">
                                     <div className="col-12">
                                         <h2>comments</h2>
                                         <ul className='list-group'>
@@ -100,6 +99,7 @@ const DetailPost = () => {
                                             }
                                         </ul>
                                     </div>
+                                </div>
                                 </div>
                             </div>
                         </div>
