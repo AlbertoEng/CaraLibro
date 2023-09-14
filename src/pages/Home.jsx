@@ -71,7 +71,7 @@ const Home = () => {
                             searchText &&
                             listPosts.map((post) => {
                                 return (
-                                    post.title.toLowerCase().includes(searchText.toLowerCase()) || post.tag.toLowerCase().includes(searchText.toLowerCase()) ? <div key={post.key} className="card mt-3 shadow">
+                                    post.title.toLowerCase().includes(searchText.toLowerCase()) || post.tags.toLowerCase().includes(searchText.toLowerCase()) ? <div key={post.key} className="card mt-3 shadow">
                                         <img src={post.cover} className="card-img-top" alt="..." />
                                         <div className="card-body ">
                                             <h2 className="card-title">{post.title}</h2>
