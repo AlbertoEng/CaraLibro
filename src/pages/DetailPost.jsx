@@ -1,5 +1,6 @@
 import React, { useEffect, useLayoutEffect, useState } from 'react'
 import { Link, useParams, useNavigate } from 'react-router-dom'
+import dayjs from 'dayjs';
 
 const DetailPost = () => {
 
@@ -34,7 +35,7 @@ const DetailPost = () => {
         }
         getPostById()
         getMessages()
-    }, [id])
+    }, [])
 
     const handleChangeMessage = (ev) => {
         setMessage({ ...message, [ev.target.name]: ev.target.value, createdAt: `${new Date()}` })
@@ -69,18 +70,20 @@ const DetailPost = () => {
                     <div className=''>
                         <div className='d-flex flex-column justify-content-center h-50 align-items-center' >
                             {
-                                post.cover 
-                                    ? <img src={post.cover} className="img-fluid rounded shadow" alt="..." style={{ width: '800px' }} /> 
+                                post.cover
+                                    ? <img src={post.cover} className="img-fluid rounded shadow" alt="..." style={{ width: '800px' }} />
                                     : <div className="spinner-border text-primary" role="status">
-                                    <span className="visually-hidden">Loading...</span>
-                                  </div>
+                                        <span className="visually-hidden">Loading...</span>
+                                    </div>
                             }
-                            <h1 className='mt-3'>{post.title}</h1>
-                            <h6 className=''>{post.autor}</h6>
-                            <h6 className=''>{post.tags}</h6>
-                            <h6 className=''>{post.content}</h6>
-                            <div className="row">
+
+                            <div className="row w-100" style={{ maxWidth: '800px'}}>
                                 <div className="col-12">
+
+                                    <h1 className='mt-3'>{post.title}</h1>
+                                    <h6 className='fw-bold'>{post.autor}</h6>
+                                    <h6 className='fw-bold '>{post.tags}</h6>
+                                    <h6 className=''>{post.content}</h6>
                                     <h3 className='mt-5'>Agrega un Comentario</h3>
                                     <textarea onChange={handleChangeMessage} type="texa" name='comment' className='form-control' />
                                     <button onClick={handleAddComment} className='btn btn-primary mt-3'>Agregar Comentario</button>
@@ -98,7 +101,7 @@ const DetailPost = () => {
                                                             <div className="card-body">
                                                                 <blockquote className="blockquote mb-0">
                                                                     <p>{mess.comment}</p>
-                                                                    <footer className="blockquote-footer">creado en <cite title="Source Title">{mess.createdAt}</cite></footer>
+                                                                    <footer className="blockquote-footer">creado en <cite title="Source Title">{dayjs(post.createdAt).format('DD-MM-YYYY')}</cite></footer>
                                                                 </blockquote>
                                                             </div>
                                                         </div> : null
