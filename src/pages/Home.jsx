@@ -19,7 +19,7 @@ const Home = () => {
             setListPosts(objectToList)
         }
         getPosts()
-    }, [])
+    }, [listPosts])
 
     const handleClick = (ev, key) => {
         navigate(`/detail/${key}`);

@@ -1,9 +1,10 @@
-import React, { useLayoutEffect, useState } from 'react'
+import React, { useEffect, useLayoutEffect, useState } from 'react'
 import { Link, useParams, useNavigate } from 'react-router-dom'
 
 const DetailPost = () => {
 
-    const { id } = useParams();
+    const params = useParams();
+    const [id, setId] = useState(params.id)
     const [post, setPost] = useState({})
     const [listMessages, setListMessages] = useState([])
     const navigate = useNavigate();
@@ -15,7 +16,7 @@ const DetailPost = () => {
 
 
 
-    useLayoutEffect(() => {
+    useEffect(() => {
         const getPostById = async () => {
             const response = await fetch(`https://mi-proyecto-7bd3d-default-rtdb.firebaseio.com/postv2/${id}/.json`);
             const data = await response.json();
