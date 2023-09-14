@@ -13,7 +13,7 @@ const DetailPost = () => {
         id
     })
 
-    
+
 
     useLayoutEffect(() => {
         const getPostById = async () => {
@@ -21,10 +21,10 @@ const DetailPost = () => {
             const data = await response.json();
             setPost(data);
         }
-        const getMessages = async()=>{
+        const getMessages = async () => {
             const response = await fetch(`https://mi-proyecto-7bd3d-default-rtdb.firebaseio.com/replies/.json`);
             const data = await response.json()
-            const objectToList = Object.entries(data).map(([clave, valor])=>{
+            const objectToList = Object.entries(data).map(([clave, valor]) => {
                 valor.key = clave
                 return valor
             })
@@ -35,14 +35,14 @@ const DetailPost = () => {
         getMessages()
     }, [id])
 
-    const handleChangeMessage = ( ev )=>{
-        setMessage({...message, [ev.target.name]: ev.target.value, createdAt: `${new Date()}`})
+    const handleChangeMessage = (ev) => {
+        setMessage({ ...message, [ev.target.name]: ev.target.value, createdAt: `${new Date()}` })
     }
 
-    const handleAddComment = (ev)=>{
+    const handleAddComment = (ev) => {
         ev.preventDefault()
         const createMessage = async () => {
-            const response = await fetch(`https://mi-proyecto-7bd3d-default-rtdb.firebaseio.com/replies/.json`,{
+            const response = await fetch(`https://mi-proyecto-7bd3d-default-rtdb.firebaseio.com/replies/.json`, {
                 method: 'post',
                 body: JSON.stringify(message),
                 postId: id
@@ -67,7 +67,13 @@ const DetailPost = () => {
                 <div className="col-12 ">
                     <div className=''>
                         <div className='d-flex flex-column justify-content-center h-50 align-items-center' >
-                            <img src={post?.cover} className="img-fluid rounded shadow" alt="..." style={{ width: '800px' }} />
+                            {
+                                post.cover 
+                                    ? <img src={post.cover} className="img-fluid rounded shadow" alt="..." style={{ width: '800px' }} /> 
+                                    : <div className="spinner-border text-primary" role="status">
+                                    <span className="visually-hidden">Loading...</span>
+                                  </div>
+                            }
                             <h1 className='mt-3'>{post.title}</h1>
                             <h6 className=''>{post.autor}</h6>
                             <h6 className=''>{post.tags}</h6>
@@ -75,31 +81,31 @@ const DetailPost = () => {
                             <div className="row">
                                 <div className="col-12">
                                     <h3 className='mt-5'>Agrega un Comentario</h3>
-                                    <textarea onChange={handleChangeMessage} type="texa" name='comment'  className='form-control' />
+                                    <textarea onChange={handleChangeMessage} type="texa" name='comment' className='form-control' />
                                     <button onClick={handleAddComment} className='btn btn-primary mt-3'>Agregar Comentario</button>
                                     <div className="row">
-                                    <div className="col-12">
-                                        <h2>comments</h2>
-                                        <ul className='list-group'>
-                                            {
-                                                listMessages.map(( mess )=>{
+                                        <div className="col-12">
+                                            <h2>comments</h2>
+                                            <ul className='list-group'>
+                                                {
+                                                    listMessages.map((mess) => {
 
-                                                    return mess.id === id ? <div key={mess.key} className="card mt-3">
-                                                    <div className="card-header">
-                                                      Jesus Eng
-                                                    </div>
-                                                    <div className="card-body">
-                                                      <blockquote className="blockquote mb-0">
-                                                        <p>{mess.comment}</p>
-                                                        <footer className="blockquote-footer">creado en <cite title="Source Title">{mess.createdAt}</cite></footer>
-                                                      </blockquote>
-                                                    </div>
-                                                  </div> : null
-                                                })
-                                            }
-                                        </ul>
+                                                        return mess.id === id ? <div key={mess.key} className="card mt-3">
+                                                            <div className="card-header">
+                                                                Jesus Eng
+                                                            </div>
+                                                            <div className="card-body">
+                                                                <blockquote className="blockquote mb-0">
+                                                                    <p>{mess.comment}</p>
+                                                                    <footer className="blockquote-footer">creado en <cite title="Source Title">{mess.createdAt}</cite></footer>
+                                                                </blockquote>
+                                                            </div>
+                                                        </div> : null
+                                                    })
+                                                }
+                                            </ul>
+                                        </div>
                                     </div>
-                                </div>
                                 </div>
                             </div>
                         </div>
